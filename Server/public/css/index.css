@@ -1,0 +1,405 @@
+.settings-button {
+  margin: 15px 0 10px 0;
+}
+
+h1 {
+  font-size: 30px !important;
+  margin-top: 10px !important;
+  margin-bottom: 5px !important;
+}
+
+.menu-item-indent {
+  margin-left: 15px;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.binline {
+  display: inline-block;
+}
+
+.panel-heading {
+  padding: 8px 8px !important;
+}
+
+.panel-body-nopadding {
+  padding: 0 !important;
+}
+
+.panel {
+  margin-bottom: 10px !important;
+}
+
+#settingsModal .settings-table td {
+  padding: 5px;
+
+}
+
+#resultsPanel .panel-body {
+  height: 100px;
+  overflow: scroll;
+}
+
+.dataSetDisplayPanel {
+  padding: 0;
+}
+
+.dataSetDisplay {
+  height: 300px;
+}
+
+/* Dataset viewer plot */
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #AAA;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font-weight: 200;
+  fill: #AAA;
+}
+
+#navigator .viewport {
+  stroke: grey;
+  fill: black;
+  fill-opacity: 0.2;
+}
+
+rect.pane {
+  cursor: move;
+  fill: none;
+  pointer-events: all;
+}
+
+.dataset-line {
+  fill: none;
+  stroke: #D3D3D3;
+  stroke-width: 1.5px;
+}
+
+.smoothed-dataset-line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.line-match {
+  fill: none;
+  stroke-width: 4px;
+  stroke-linecap: round;
+}
+
+.debug-point {
+  fill: none;
+  stroke-width: 4px;
+  stroke-linecap: round;
+}
+
+.match-value.match-poor {
+  color: #A94442;
+}
+
+.match-value.match-good {
+  color: #008000;
+}
+
+.result-display.displaying {
+  background-color: rgba(0, 78, 255, 0.11);
+}
+
+.middle-vertical-align {
+  vertical-align: middle !important;
+}
+
+span.desc-label {
+  font-style: italic;
+  color: gray;
+}
+
+#dataSetQueryCanvas {
+  padding: 0px !important;
+  background-color: rgba(255, 255, 255, 0.80);
+}
+
+#dataSetQueryCanvas canvas {
+  width: 100%;
+  height: 209px; /* 209px default*/
+  margin-bottom: -5px;
+}
+
+#queryAndResultsContainer > div {
+  padding: 0px;
+}
+
+#dataSetQueryResultsPanel {
+  padding: 2px !important;
+  overflow-y: scroll;
+}
+
+#dataSetQueryResultsPanel > div {
+  height: 170px;
+  margin: 2px 0 2px 0;
+}
+
+#dataSetQueryResultsTitle {
+  height: 30px;
+  padding: 4px;
+}
+
+#dataSetQueryResultsPanel tbody tr:first-child td {
+  border-top: none;
+}
+
+.animated-show-hide.ng-hide {
+  opacity: 0;
+}
+
+.animated-show-hide.ng-hide-remove, .ng-hide-add {
+  display: block !important;
+}
+
+.animated-show-hide.ng-hide-remove {
+  transition: all linear 300ms;
+}
+
+.animated-show-hide.ng-hide-add {
+  transition: all linear 400ms;
+}
+
+.title-icon {
+  margin-right: 5px;
+}
+
+.matchTableLabel,
+.snumTableLabel,
+.smoothItTableLabel,
+.scaleTableLabel,
+.sizeTableLabel {
+  cursor: pointer;
+}
+
+.feedbackTableLabel,
+.feedbackTableValue {
+  width: 90px !important;
+  white-space: nowrap;
+}
+
+.smallerfont-90 {
+  font-size: 90%;
+}
+
+.btn-feedback {
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  line-height: 1;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+
+.matchTableLabel,
+.matchTableValue {
+  width: 90px !important;
+  white-space: nowrap;
+}
+
+.snumTableLabel,
+.snumTableValue {
+  width: 110px;
+  white-space: nowrap;
+}
+
+.smoothItTableLabel,
+.smoothItTableValue {
+  width: 145px;
+  white-space: nowrap;
+}
+
+.sizeTableLabel,
+.sizeTableValue {
+  width: 130px;
+  white-space: nowrap;
+}
+
+.fillTableLabel,
+.fillTableValue {
+
+}
+
+#queryAndResultsContainer .progress {
+  position: relative;
+}
+
+#queryAndResultsContainer .progress span {
+  position: absolute;
+  display: block;
+  width: 100%;
+  color: black;
+}
+
+#queryAndResultsContainer .progress {
+  height: 1em;
+  margin-bottom: 0;
+}
+
+#queryAndResultsContainer .progress-bar {
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.alert-no-bottom-margin {
+  margin-bottom: 0px !important;
+}
+
+#dataSetPanel .dropdown-menu {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.slider-handle {
+  width: 15px;
+  height: 15px;
+}
+
+.slider.slider-horizontal .slider-tick, .slider.slider-horizontal .slider-handle {
+  margin-top: -3px;
+}
+
+#queryPanel {
+  position: relative;
+}
+
+#queryPanelBody {
+  position: relative;
+}
+
+.query-panel-tab-bottom {
+  position: absolute;
+  bottom: 0;
+  background: #F9F9F9;
+  width: 100%;
+  border-top: 1px solid #ddd;
+}
+
+.query-panel-tab-top {
+  padding: 4px;
+  position: absolute;
+  top: 0;
+  background: #F9F9F9;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+}
+
+#quickDrawPanel .btn {
+  margin: 4px;
+}
+
+#quickDrawPanel .toggle {
+  margin: 3px 5px 6px 5px;
+}
+
+#quickDrawPanel .scroll-container {
+  border-top: 1px solid #ddd;
+  padding: 5px;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+#quickDrawPanel .content {
+  width: 10000px;
+}
+
+#quickDrawPanel .query-preview {
+  margin-right: 10px;
+  background: white;
+  float: left;
+  border: 1px solid #ddd;
+}
+
+#quickDrawPanel .query-preview.hightlighted {
+  border: 2px solid #FF9292;
+}
+
+#quickDrawPanel .qdp-label {
+  margin: 3px;
+  display: inline-block;
+  font-size: 80%;
+  color: #a94442;
+}
+
+#queryLengthSettingsPanel .dropdown {
+  display: inline-block;
+}
+
+@media (min-width: 768px) {
+  .modal-dialog {
+    width: 750px !important;
+  }
+}
+
+.glyphicon-refresh-animate {
+  -animation: spin .7s infinite linear;
+  -webkit-animation: spin2 .7s infinite linear;
+}
+
+.icon-width {
+  background: url("../imgs/width.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px 14px;
+  width: 10px;
+  height: 10px;
+  margin: 4px 0px 4px 0px;
+}
+.icon-amplitude {
+  background: url("../imgs/amplitude.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px 14px;
+  width: 10px;
+  height: 10px;
+  margin: 4px 0px 4px 0px;
+}
+.icon-offset-x {
+  background: url("../imgs/offset-x.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px 14px;
+  width: 10px;
+  height: 10px;
+  margin: 4px 0px 4px 0px;
+}
+.icon-offset-y {
+  background: url("../imgs/offset-y.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px 14px;
+  width: 10px;
+  height: 10px;
+  margin: 4px 0px 4px 0px;
+}
+
+@-webkit-keyframes spin2 {
+  from { -webkit-transform: rotate(0deg);}
+  to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+  from { transform: scale(1) rotate(0deg);}
+  to { transform: scale(1) rotate(360deg);}
+}
+
+.btn-light-success {
+  color: #555;
+  background-color: rgba(92, 184, 92, 0.38);
+  border-color: rgba(76, 174, 76, 0.33);
+}
+
+.btn-light-danger {
+  color: #555;
+  background-color: rgba(217, 83, 79, 0.29);
+  border-color: rgba(212, 63, 58, 0.2);
+}

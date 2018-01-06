@@ -1,0 +1,58 @@
+<!-- Settings modal -->
+<div id="settingsModal" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title"><i class="glyphicon glyphicon-cog"></i>&nbsp;Settings</h4>
+			</div>
+
+			<div class="modal-body" style="overflow-y: scroll; max-height: 300px;">
+				<table class="settings-table">
+					<tr>
+						<td>
+							<label>Value difference cost weight</label>
+							<div>The weight to give to the value difference cost</div>
+						</td>
+						<td style="padding: 5px 15px 0 15px; vertical-align: top;">
+							<span slider min="0" max="1" step="0.1" ng-model="Parameters.VALUE_DIFFERENCE_WEIGHT"></span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Rescaling cost weight</label>
+							<div>The weight to give to the rescaling cost</div>
+						</td>
+						<td style="padding: 5px 15px 0 15px; vertical-align: top;">
+							<span slider min="0" max="1" step="0.1" ng-model="Parameters.RESCALING_COST_WEIGHT"></span>
+						</td>
+					</tr>
+					<tr>
+						<td style="vertical-align: top;">
+							<label>Maximum allowed value for the match metric: </label>
+							<div>To help filtering the matches</div>
+						</td>
+						<td style="vertical-align: top;">
+							<input type="text" ng-model="Parameters.MATCH_METRIC_MAXIMUM_VALUE"/>
+						</td>
+					</tr>
+					<tr>
+						<td><label>Match algorithm: </label></td>
+						<td style="vertical-align: top;">
+							<select ng-model="Parameters.ALGORITHM_TO_USE">
+								<option value="qetch">Qetch</option>
+								<option value="dtw">Dynamic Time Warping</option>
+								<option value="ed">Euclidean Distance</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+				<!-- TODO clear everything -->
+			</div>
+		</div>
+
+	</div>
+</div>

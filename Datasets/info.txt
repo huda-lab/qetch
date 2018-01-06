@@ -1,0 +1,42 @@
+Question 4 cwh
+ AMZN: 1997-05-16 to 2005-03-24 
+ Cup with handle: 95 days from July 1999 to November 1999
+
+Question 5b has
+ AMZN: 1997-05-16 to 2005-03-24 
+ Head and shoulders: 150 days from October 1999 to March 2000
+
+Question 10 rb
+ Insurance company: 2004-01-01 to 2011-05-01
+ Rounding bottom: 304 days from November 2008 to September 2009
+
+Question 11 ihas
+ Alaska Air Group: 1997-08-22 to 2002-08-22 
+ Reverse head and shoulder 108 days from August 1998 to December 1998
+
+Question 12 and 13 sixp sevp
+ Traffic log data set from 2004-11-19 09:30:00 to 2005-01-27 09:30:00
+ Hourly
+ Question 12 peak 6 days
+ Question 13 peak 7 days
+
+Question 14 dip
+ MIT-BIH ST Change Database 301 (10sec extraction with 3600 points)
+ The V anomaly 525ms
+
+Question 15 foup
+ MIT-BIH ST Change Database 302 (10sec extraction with 1911 points)
+ The four peaks anomaly 650ms
+
+
+Mean daily temperature saugeen
+https://datamarket.com/data/set/235i/mean-daily-temperature-saugeen-river-near-port-elgin-jan-01-1988-to-dec-31-1991#!ds=235i&display=line
+
+Daily foreign exchange rates
+https://datamarket.com/data/set/237v/daily-foreign-exchange-rates-31-december-1979-31-december-1998#!ds=237v!2jx6=2&display=line&s=41m&e=6so
+
+Precipitation in mm., Eastport, USA, 1887-1950[Edit]
+https://datamarket.com/data/set/22y6/precipitation-in-mm-eastport-usa-1887-1950#!ds=22y6&display=line&e=-k5h
+
+7169205000: Input component - Imported products used in the Mining Of Coal
+https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/mc8t/ppi

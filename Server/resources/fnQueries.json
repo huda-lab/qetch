@@ -1,0 +1,38 @@
+[
+  {
+    "cons": [{"m": 1}, {"m": 0.5}, {"m": 2}, {"m": 4}, {"m": 0.25}, {"m": 8}, {"m": 0.1}],
+    "f": "return constants.m * x;",
+    "fStr": "#m# * x",
+    "maxSecNum": 1,
+    "samplingStep": 0.1,
+    "range": [0, 1],
+    "xOffset": 0
+  },
+  {
+    "cons": [{"a": 1, "b": 0}, {"a": 2, "b": 0}, {"a": 0.5, "b": 0}, {"a": 0.25, "b": 0}],
+    "f": "return constants.a * (x * x) + constants.b * x;",
+    "fStr": "#a# * x<sup>2</sup> + #b# * x",
+    "maxSecNum": 2,
+    "samplingStep": 0.1,
+    "range": [-2, 2],
+    "xOffset": 2
+  },
+  {
+    "cons": [{"m": -1}, {"m": -0.5}, {"m": -2}, {"m": -4}, {"m": -0.25}, {"m": -8}, {"m": -0.1}],
+    "f": "return constants.m * x;",
+    "fStr": "#m# * x",
+    "maxSecNum": 1,
+    "samplingStep": 0.1,
+    "range": [0, 1],
+    "xOffset": 0
+  },
+  {
+    "cons": [{"a": -1, "b": 0}, {"a": -2, "b": 0}, {"a": -0.5, "b": 0}, {"a": -0.25, "b": 0}],
+    "f": "return constants.a * (x * x) + constants.b * x;",
+    "fStr": "#a# * x<sup>2</sup> + #b# * x",
+    "maxSecNum": 2,
+    "samplingStep": 0.1,
+    "range": [-2, 2],
+    "xOffset": 2
+  }
+]

@@ -1,0 +1,115 @@
+PostgreSQL DB configuration
+
+Install
+-------
+
+brew install postgresql
+rm -rf /usr/local/var/postgres
+initdb /usr/local/var/postgres
+
+psql postgres -c 'CREATE EXTENSION "adminpack";'
+createdb qetch
+pgsql qetch
+
+Start
+-------
+
+pg_ctl -D /usr/local/var/postgres -l logfile Start
+
+Automatic start
+--------------
+
+cp /usr/local/Cellar/postgresql/9.4.5_2/homebrew.mxcl.postgresql.plist ~/Library/LaunchAgents
+launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+
+Restart
+----------
+
+brew services restart postgresql
+
+
+Database creation
+---------------------
+
+create table Measurement (
+	sname varchar(20), 
+	snum VARCHAR, 
+	time timestamp without time zone, 
+	value double precision,
+	primary key (sname, snum, time));
+
+create table MeasurementDescription (
+	key varchar primary key,
+	description varchar,
+	relativeTime boolean,
+	xAxisDesc varchar,
+	yAxisDesc varchar,
+	xAxisType varchar,
+	yAxisType varchar,
+	xAxisFormat varchar
+);
+
+
+
+COPY measurementdescription (key, description, relativetime, xaxisdesc, yaxisdesc, xaxistype, yaxistype, xaxisformat) FROM stdin;
+TEST	Tests	t	X	Y	number	number	\N
+MITBIH	MIT-BIH	t	Time	Instantaneous Heart Rate	number	number	\N
+PRICES	Stock Prices	f	Time	Price	date	number	%x
+QTDB	QT Database	t	Sample	V5	number	number	\N
+ISP	ISP traffic	f	Time	Bits	date	number	%x
+CMP1	Recession1	f	Time	num	date	number	\N
+regexpexp	Regexp Experiments	f	X	Y	number	number	
+multiplequeries	Multiple Queries	f	X	Y	number	number	
+multiplequeries2	Multiple Queries 2	f	X	Y	number	number	
+multiplequeriesplay	Multiple Queries Play	f	X	Y	number	date	
+multiplequeries3	Multiple Queries 3	f	X	Y	number	date	
+multiplequeries4	Multiple Queries 4	f	X	Y	number	date	
+USRTST	USR Studies	t	Time	Y	date	number	%x
+\.
+
+CREATE TABLE measurementseriesdescription (
+  measurementkey character varying NOT NULL,
+  measurementseries character varying NOT NULL,
+  description character varying
+	constraint pk1 primary key (measurementKey, measurementSeries)
+);
+
+insert into MeasurementDescription values ('TEST', 'Tests', true, 'X', 'Y', 'number', 'number', NULL);
+insert into MeasurementSeriesDescription values ('TEST', 't1', 'Test1');
+insert into MeasurementSeriesDescription values ('TEST', 't2', 'Test2');
+insert into MeasurementSeriesDescription values ('TEST', 't3', 'Test3');
+
+insert into MeasurementDescription values ('MITBIH', 'MIT-BIH', true, 'Time', 'Instantaneous Heart Rate', 'number', 'number', NULL);
+insert into MeasurementSeriesDescription values ('MITBIH', 's1', 'Series 1');
+insert into MeasurementSeriesDescription values ('MITBIH', 's2', 'Series 2');
+insert into MeasurementSeriesDescription values ('MITBIH', 's3', 'Series 3');
+insert into MeasurementSeriesDescription values ('MITBIH', 's4', 'Series 4');
+insert into MeasurementSeriesDescription values ('MITBIH', 'STC301', 'ST Change 301');
+insert into MeasurementSeriesDescription values ('MITBIH', 'STC302', 'ST Change 302');
+
+insert into MeasurementDescription values ('PRICES', 'Stock Prices', false, 'Time', 'Price', 'date', 'number', '%x');
+insert into MeasurementSeriesDescription values ('PRICES', 'APPL', 'Apple');
+insert into MeasurementSeriesDescription values ('PRICES', 'MSFT', 'Microsoft');
+insert into MeasurementSeriesDescription values ('PRICES', 'AMZN', 'Amazon.com');
+insert into MeasurementSeriesDescription values ('PRICES', 'INTL', 'FCStone');
+insert into MeasurementSeriesDescription values ('PRICES', 'UTX', 'United Technologies');
+insert into MeasurementSeriesDescription values ('PRICES', 'APC', 'Anadarko Petroleum Corp.');
+insert into MeasurementSeriesDescription values ('PRICES', 'ALK', 'Alaska Air Group');
+
+insert into MeasurementDescription values ('QTDB', 'QT Database', true, 'Sample', 'V5', 'number', 'number', NULL);
+insert into MeasurementSeriesDescription values ('QTDB', 'sel102', 'sel102');
+
+insert into MeasurementDescription values ('ISP', 'ISP traffic', false, 'Time', 'Bits', 'date', 'number', '%x');
+insert into MeasurementSeriesDescription values ('ISP', 's1', 's1');
+insert into MeasurementSeriesDescription values ('ISP', 's2', 's2');
+
+insert into MeasurementDescription values ('CMP1', 'Recession1', false, 'Time', 'num', 'date', 'number', NULL);
+insert into MeasurementSeriesDescription values ('CMP1', 'unemployed', 'unemployed');
+insert into MeasurementSeriesDescription values ('CMP1', 'insuranceeq', 'Insurance companies equity');
+
+insert into MeasurementSeriesDescription values ('USRTST', 'forexchangebrius', 'Foreign exchange british US');
+insert into MeasurementSeriesDescription values ('USRTST', 'saugeenrivtemp', 'Saugeen river temperature');
+insert into MeasurementSeriesDescription values ('USRTST', 'precipitationseastport', 'Precipitations Eastport');
+insert into MeasurementSeriesDescription values ('USRTST', 'importprodminingcoal', 'Import for mining of coal');
+insert into MeasurementSeriesDescription values ('USRTST', 'meandailyflowcumecsvatnsdals', 'Mean daily flow Vatnsdalsa River');

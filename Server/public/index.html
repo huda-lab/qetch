@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html ng-app="Qetch">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Qetch</title>
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" type="text/css" href="/libs/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/libs/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/libs/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
+	<link rel="stylesheet" type="text/css" href="/libs/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/index.css">
+
+	<!-- Scripts -->
+	<script type="text/javascript" src="/libs/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="/libs/angular/angular.min.js"></script>
+	<script type="text/javascript" src="/libs/async/dist/async.min.js"></script>
+	<script type="text/javascript" src="/libs/angular-resource/angular-resource.min.js"></script>
+	<script type="text/javascript" src="/libs/angular-animate/angular-animate.min.js"></script>
+	<script type="text/javascript" src="/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/libs/paper/dist/paper-full.js"></script>
+	<script type="text/javascript" src="/libs/d3/d3.min.js"></script>
+	<script type="text/javascript" src="/libs/lodash/lodash.min.js"></script>
+	<script type="text/javascript" src="/libs/FileSaver/FileSaver.js"></script>
+	<script type="text/javascript" src="/libs/mathjs/dist/math.min.js"></script>
+	<script type="text/javascript" src="/libs/bootstrap-validator/dist/validator.min.js"></script>
+	<script type="text/javascript" src="/libs/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+	<script type="text/javascript" src="/libs/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js"></script>
+	<script type="text/javascript" src="/libs/angular-bootstrap-switch/dist/angular-bootstrap-switch.min.js"></script>
+	<script type="text/javascript" src="/libs/angular-bootstrap-slider/slider.js"></script>
+	<script type="text/javascript" src="/js/app.js"></script>
+	<script type="text/javascript" src="/js/resources/dataset.js"></script>
+	<script type="text/javascript" src="/js/resources/queries.js"></script>
+	<script type="text/javascript" src="/js/services/qetchQueryAPI.js"></script>
+	<script type="text/javascript" src="/js/services/datasetAPI.js"></script>
+	<script type="text/javascript" src="/js/services/queryDrawRefiningAPI.js"></script>
+	<script type="text/javascript" src="/js/services/dataUtilsAPI.js"></script>
+	<script type="text/javascript" src="/js/controllers/dataSetViewer.js"></script>
+	<script type="text/javascript" src="/js/controllers/qetchQueryResults.js"></script>
+	<script type="text/javascript" src="/js/controllers/dataManagement.js"></script>
+	<script type="text/javascript" src="/js/controllers/queryPaper.js"></script>
+	<script type="text/javascript" src="/js/directives/qetchQueryPaper.js"></script>
+	<script type="text/javascript" src="/js/directives/datasetPlot.js"></script>
+	<script type="text/javascript" src="/js/libs/dtw.js"></script>
+	<script type="text/javascript" src="/js/generic.js"></script>
+	<script type="text/javascript" src="js/libs/decision-tree-js/decision-tree.js"></script>
+</head>
+
+<body ng-controller="MainCtrl">
+<div class="container" style="margin-top: 20px;">
+	<div class="row">
+		<h1 class="pull-left">Qetch</h1>
+		<!-- Button trigger modal -->
+		<div class="pull-right settings-button">
+			<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#settingsModal"><i class="glyphicon glyphicon-cog"></i>&nbsp;Settings</button>
+		</div>
+		<div class="pull-right">&nbsp;</div>
+		<div class="pull-right dropdown settings-button">
+			<button class="btn btn-default dropdown-toggle btn-sm" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				Load new data
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li><a href="#" data-toggle="modal" data-target="#definingSeriesType"><i class="glyphicon glyphicon-tasks"></i>&nbsp;Define new time series type</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#loadingDataDialog"><i class="glyphicon glyphicon-cloud-upload"></i>&nbsp;Load time series</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#dataManagmentExistingData"><i class="glyphicon glyphicon-wrench"></i>&nbsp;Managing existing data</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div id="dataSetPanel" class="panel panel-default" ng-controller="Dataset_ViewerCtrl">
+			<div class="panel-heading"><i class="glyphicon glyphicon-stats title-icon"></i> Dataset</div>
+			<table class="table">
+				<tr>
+					<td>
+						<div class="control-group">
+							<div class="form-inline">
+
+								<div class="btn-group btn-group-sm">
+									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<span ng-show="dataset.key">
+											<span ng-show="multipleSeries" class="glyphicon glyphicon-briefcase" style="top:2px;"></span>
+											<span ng-hide="multipleSeries" class="glyphicon glyphicon-stats"></span>
+											{{dataset.desc}}
+											<span ng-show="multipleSeries" class="desc-label">&nbsp;(multiple time series)</span>
+										</span>
+										<span ng-show="!dataset.key" class="desc-label">choose dataset...</span>
+										&nbsp;<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu">
+										<li ng-repeat-start="datadef in dataDefinition">
+											<a href ng-click="selectDataset({key: datadef.key})">
+												<span class="glyphicon glyphicon-briefcase" style="top:2px;"></span>&nbsp;{{datadef.desc}}
+											</a>
+										</li>
+										<li class="menu-item-indent" ng-repeat="series in datadef.series">
+											<a href ng-click="selectDataset({key: datadef.key, snum: series.snum})">
+												<span class="glyphicon glyphicon-stats"></span>&nbsp;{{series.desc}}
+											</a>
+										</li>
+										<li ng-repeat-end></li>
+									</ul>
+								</div>
+
+								<div ng-show="multipleSeries" class="btn-group btn-group-sm">
+									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<span ng-show="selectedSeries">
+											<span class="glyphicon glyphicon-stats"></span>&nbsp;{{selectedSeries.desc}}
+										</span>
+										<span ng-show="!selectedSeries" class="desc-label">choose dataset...</span>
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu">
+										<li class="menu-item-indent" ng-repeat="series in dataset.series">
+											<a href ng-click="showSeries($index)">
+												<span class="glyphicon glyphicon-stats"></span>&nbsp;{{series.desc}}
+											</a>
+										</li>
+									</ul>
+								</div>
+
+								<div ng-show="datasetAvailable" class="pull-right" style="margin-top: 5px;">
+									Smooth iteration:
+									<span slider min="0" max="maxSmoothedDataId" step="1" ng-model="smoothedDataId" style="display: inline-block; width: 150px; margin-left: 10px;"></span>
+								</div>
+
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<div class="dataSetDisplayPanel panel-body" ng-show="datasetAvailable">
+				<dataset-plot class="dataSetDisplay"/>
+			</div>
+		</div>
+	</div>
+	<div id="queryAndResultsContainer" ng-controller="QetchQuery_PaperCtrl" ng-show="datasetAvailable" class="row animated-show-hide">
+		<div class="col-xs-5" style="padding-right: 5px;">
+			<div class="panel panel-default" id="queryPanel">
+				<div class="panel-heading">
+					<i class="glyphicon glyphicon-pencil title-icon"></i> Query
+					<div class="pull-right">
+						<button type="button" ng-click="setQueryLength()" class="btn btn-default btn-xs popover-button" alt="Query amplitude" style="margin-right: 5px;">
+							<div class="icon-width"></div>
+						</button>
+						<button type="button" ng-click="setQueryHeight()" class="btn btn-default btn-xs popover-button" alt="Query amplitude" style="margin-right: 5px;">
+							<div class="icon-amplitude"></div>
+						</button>
+						<button type="button" ng-click="setQueryHorizontalOffset()" class="btn btn-default btn-xs popover-button" alt="Query horizontal offset" style="margin-right: 5px;">
+							<div class="icon-offset-x"></div>
+						</button>
+						<button type="button" ng-click="setQueryVerticalOffset()" class="btn btn-default btn-xs popover-button" alt="Query vertical offset" style="margin-right: 5px;">
+							<div class="icon-offset-y"></div>
+						</button>
+						&nbsp;
+						&nbsp;
+						<button type="button" ng-click="addRegexOp({op:'+', draw: true})" class="btn btn-default btn-xs" alt="Repeat operator" style="margin-right: 5px;">
+							<i class="glyphicon glyphicon-repeat"></i>
+						</button>
+						<button type="button" ng-click="setRegexpSize()" class="btn btn-default btn-xs" alt="Repeat operator" style="margin-right: 5px;">
+							<i class="glyphicon glyphicon-repeat"></i> <sup>n</sup>
+						</button>
+						<button type="button" ng-click="addRegexOp({op:'!', val: notOperatorValue, draw: false})" class="btn btn-default btn-xs" alt="Not Operator" style="margin-right: 5px;">
+							<i class="glyphicon glyphicon-exclamation-sign"></i>
+						</button>
+						&nbsp;
+						&nbsp;
+						<input type="number" min="0" step="0.1" ng-model="notOperatorValue" style="width: 36px; font-size: 11px; display:none;" />
+						<button type="button" ng-click="clear()" class="btn btn-default btn-xs">
+							<i class="glyphicon glyphicon-erase"></i> Clear
+						</button>
+					</div>
+				</div>
+				<div class="panel-body panel-body-nopadding" id="queryPanelBody">
+					<form ng-submit="closeQueryLengthPanel(true)" id="queryLengthSettingsPanel" class="query-panel-tab-top" ng-show="queryLengthPanelVisible">
+							Length: <input type="number" min="1" ng-model="queryLength" style="width:50px;"/>
+							<div class="dropdown">
+								<button class="btn btn-default btn-xs ropdown-toggle" type="button" data-toggle="dropdown">
+									{{queryLengthUnit.str}}
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+									<li><a ng-click="setQueryLengthUnit('ms')" href="#">ms</a></li>
+									<li><a ng-click="setQueryLengthUnit('s')" href="#">s</a></li>
+									<li><a ng-click="setQueryLengthUnit('min')" href="#">min</a></li>
+									<li><a ng-click="setQueryLengthUnit('day')" href="#">day</a></li>
+								</ul>
+							</div>
+							&nbsp;
+							Tolerance: <input type="number" min="0" max="100" step="0.1" style="width:50px;" ng-model="queryLengthTolerance"/> %
+							<!--<span style="display:none">-->
+							<!--<span>-->
+								<!--<input type="checkbox" ng-model="queryLengthStrictMode"> Strict-->
+							<!--</span>-->
+						<div class="pull-right" style="margin: 2px;">
+							<button type="submit" ng-disabled="!queryLengthCanConfirm" class="btn btn-default btn-xs">OK</button>
+							<button type="button" class="btn btn-default btn-xs" ng-click="closeQueryLengthPanel(false)">Clear</button>
+						</div>
+					</form>
+					<form ng-submit="closeQueryHeightPanel(true)" id="queryHeightSettingsPanel" class="query-panel-tab-top" ng-show="queryHeightPanelVisible">
+						Height: <input type="number" min="1" ng-model="queryHeight" style="width:50px;"/>
+						&nbsp;
+						Tolerance: <input type="number" min="0" max="100" step="0.1" style="width:50px;" ng-model="queryHeightTolerance"/> %
+						<div class="pull-right" style="margin: 2px;">
+							<button type="submit" ng-disabled="!queryHeightCanConfirm" class="btn btn-default btn-xs">OK</button>
+							<button type="button" class="btn btn-default btn-xs" ng-click="closeQueryHeightPanel(false)">Clear</button>
+						</div>
+					</form>
+					<form ng-submit="closeQueryHorizontalOffsetPanel(true)" id="queryHorizontalOffsetSettingsPanel" class="query-panel-tab-top" ng-show="queryHorizontalOffsetPanelVisible">
+						Min: <input type="number" min="0" ng-model="queryHorizontalOffset.min" style="width:50px;"/>
+						&nbsp;
+						Max: <input type="number" min="0" ng-model="queryHorizontalOffset.max" style="width:50px;"/>
+						<div class="dropdown" style="display: inline-block;">
+							<button class="btn btn-default btn-xs ropdown-toggle" type="button" data-toggle="dropdown">
+								{{queryHorizontalOffsetUnit.str}}
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<li><a ng-click="setQueryHorizontalOffsetUnit('ms')" href="#">ms</a></li>
+								<li><a ng-click="setQueryHorizontalOffsetUnit('s')" href="#">s</a></li>
+								<li><a ng-click="setQueryHorizontalOffsetUnit('min')" href="#">min</a></li>
+								<li><a ng-click="setQueryHorizontalOffsetUnit('day')" href="#">day</a></li>
+							</ul>
+						</div>
+						<div class="pull-right" style="margin: 2px;">
+							<button type="submit" ng-disabled="!queryHorizontalOffsetCanConfirm" class="btn btn-default btn-xs">OK</button>
+							<button type="button" class="btn btn-default btn-xs" ng-click="closeQueryHorizontalOffsetPanel(false)">Clear</button>
+						</div>
+					</form>
+					<form ng-submit="closeQueryVerticalOffsetPanel(true)" id="queryVerticalOffsetSettingsPanel" class="query-panel-tab-top" ng-show="queryVerticalOffsetPanelVisible">
+						Min: <input type="number" min="0" ng-model="queryVerticalOffset.min" style="width:50px;"/>
+						&nbsp;
+						Max: <input type="number" min="0" ng-model="queryVerticalOffset.max" style="width:50px;"/> %
+						<div class="pull-right" style="margin: 2px;">
+							<button type="submit" ng-disabled="!queryVerticalOffsetCanConfirm" class="btn btn-default btn-xs">OK</button>
+							<button type="button" class="btn btn-default btn-xs" ng-click="closeQueryVerticalOffsetPanel(false)">Clear</button>
+						</div>
+					</form>
+					<form ng-submit="closeRegexpSizePanel(true)" id="regexpSizeSettingsPanel" class="query-panel-tab-top" ng-show="regexpSizePanelVisible">
+						Repetitions: <input type="number" min="1" ng-model="regexpSize" style="width:50px;"/>
+						<div class="pull-right" style="margin: 2px;">
+							<button type="submit" ng-disabled="!regexpSizeCanConfirm" class="btn btn-default btn-xs">OK</button>
+							<button type="button" class="btn btn-default btn-xs" ng-click="closeRegexpSizePanel(false)">Clear</button>
+						</div>
+					</form>
+					<div id="dataSetQueryCanvas">
+						<query-canvas id="queryCanvas" resize></query-canvas>
+					</div>
+					<div id="quickDrawPanel" class="query-panel-tab-bottom">
+						<div class="btn btn-default btn-xs" ng-click="predefinedQueriesToggle()">
+							Predefined queries <span style="top: 2px;" class="glyphicon" ng-class="predefinedQueriesVisible ? 'glyphicon-chevron-down' : 'glyphicon-chevron-up'"></span></div>
+						<div class="btn btn-default btn-xs" ng-click="historyQueriesToggle()">
+							History <span style="top: 2px;" class="glyphicon" ng-class="historyVisible ? 'glyphicon-chevron-down' : 'glyphicon-chevron-up'"></span></div>
+						<div class="qdp-label clickable" ng-click="showSuggestedPredefinedQuery()" ng-hide="predefinedQuerySuggestion === null">Similar predefined query available</div>
+						<div class="qdp-label clickable" ng-click="showSuggestedQueryFn()" ng-hide="queryFnSuggestion === null">Similar query pattern available</div>
+						<div class="scroll-container" ng-show="predefinedQueriesVisible || historyVisible || queryFnSuggestionVisible"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-7" style="padding-left: 5px;">
+			<div class="panel panel-default" ng-controller="QetchQuery_ResultsCntrl">
+				<div class="panel-heading">
+					<i class="glyphicon glyphicon-search title-icon"></i>
+					Results
+					<!--<div class="btn btn-default btn-xs pull-right" ng-click="clearFeedbackStats()">-->
+						<!--<span class="glyphicon glyphicon-trash smallerfont-90"></span>&nbsp;-->
+						<!--Clear Feedback-->
+					<!--</div>-->
+				</div>
+				<table id="dataSetQueryResultsTitle" class="table table-condensed">
+					<tr>
+						<!--<th class="feedbackTableLabel" ng-click="changeColumnOrdering('feedback')">-->
+							<!--Feedback-->
+							<!--<i ng-show="getLastOrderingColumn() == 'feedback'"-->
+							   <!--ng-class="'glyphicon glyphicon-sort-by-attributes' + (getLastOrderingColumnSign() == '-' ? '-alt' : '')">-->
+							<!--</i>-->
+						<!--</th>-->
+						<th class="matchTableLabel" ng-click="changeColumnOrdering('adjMatch')"
+							title="Match value: 0 for a perfect match, higher values for poor matches">
+							Distance
+							<i ng-show="getLastOrderingColumn() == 'adjMatch'"
+							   ng-class="'glyphicon glyphicon-sort-by-attributes' + (getLastOrderingColumnSign() == '-' ? '-alt' : '')">
+							</i>
+						</th>
+						<th class="snumTableLabel" ng-click="changeColumnOrdering('snum')" ng-show="multipleSeries"
+							title="The dataset where the match has been found">
+							Time series
+							<i ng-show="getLastOrderingColumn() == 'snum'"
+							   ng-class="'glyphicon glyphicon-sort-by-attributes' + (getLastOrderingColumnSign() == '-' ? '-alt' : '')">
+							</i>
+						</th>
+						<th class="smoothItTableLabel" ng-click="changeColumnOrdering('smoothIteration')"
+							title="How many times the data has been smoothed to find the match">
+							Smooth iteration
+							<i ng-show="getLastOrderingColumn() == 'smoothIteration'"
+							   ng-class="'glyphicon glyphicon-sort-by-attributes' + (getLastOrderingColumnSign() == '-' ? '-alt' : '')">
+							</i>
+						</th>
+						<th class="sizeTableLabel" ng-click="changeColumnOrdering('size')"
+							title="The size of the matched portion relative to the entire dataset">
+							Time span
+							<i ng-show="getLastOrderingColumn() == 'size'"
+							   ng-class="'glyphicon glyphicon-sort-by-attributes' + (getLastOrderingColumnSign() == '-' ? '-alt' : '')">
+							</i>
+						</th>
+						<th class="fillTableLabel">
+							<div class="btn-group pull-right" ng-show="matches">
+								<button type="button" class="btn btn-default btn-xs" ng-click="showMatches(0, Number.MAX_VALUE)"
+										title="Show all the matches">Show all
+								</button>
+								<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a ng-click="showMatches(0, MAX_MATCH_GOOD)" href><span class="label label-success">Good</span> matches</a></li>
+									<li><a ng-click="showMatches(MAX_MATCH_GOOD, MAX_MATCH_MEDIUM)" href><span class="label label-warning">Fair</span> matches</a></li>
+									<li><a ng-click="showMatches(MAX_MATCH_MEDIUM, Number.MAX_VALUE)" href><span class="label label-danger">Poor</span> matches</a></li>
+									<li class="divider"></li>
+									<li><a ng-click="showMatchesFromFeedback(true)" href><span class="label label-success">Relevant</span> matches</a></li>
+									<li><a ng-click="showMatchesFromFeedback(false)" href><span class="label label-danger">Not Relevant</span> matches</a></li>
+								</ul>
+							</div>
+						</th>
+					</tr>
+				</table>
+				<div class="panel-body" id="dataSetQueryResultsPanel">
+					<div>
+						<table class="table table-condensed">
+							<tr class="result-display"
+								id="result-{{match.id}}"
+								data-match-id="{{match.id}}"
+								data-smooth-iteration="{{match.smoothIteration}}"
+								ng-repeat="match in matches | orderBy: orderingColumns">
+								<!--<td class="middle-vertical-align feedbackTableValue">-->
+									<!--<span ng-click="feedback(match.id, true)" class="btn-feedback btn btn-default btn-xs glyphicon glyphicon-ok" ng-class="getFeedbackClass(match.id, true)"></span>-->
+									<!--<span ng-click="feedback(match.id, false)" class="btn-feedback btn btn-default btn-xs glyphicon glyphicon-remove" ng-class="getFeedbackClass(match.id, false)"></span>-->
+								<!--</td>-->
+								<td class="middle-vertical-align matchTableValue">
+									<div class="label" ng-class="matchValueClass(match.match)">
+										{{match.adjMatch | number: 2}}
+									</div>
+									<!--&nbsp; id: {{match.id}}-->
+								</td>
+								<td class="middle-vertical-align snumTableValue" ng-show="multipleSeries">
+									{{getSeriesName(match.snum)}}
+								</td>
+								<td class="middle-vertical-align smoothItTableValue">
+									{{match.smoothIteration}}
+								</td>
+								<td class="middle-vertical-align sizeTableValue">
+									<div class="progress">
+										<div class="progress-bar progress-bar-info" role="progressbar" ng-style="{'width': match.size * 100 + '%'}">
+											<span>{{match.timespan.str}}</span>
+										</div>
+									</div>
+								</td>
+								<td class="middle-vertical-align fillTableValue">
+									<button class="btn btn-default btn-xs pull-right" ng-click="showMatch(match.id, match.snum, match.smoothIteration)">Show</button>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-include="'/fragments/settings-modal.html'" include-replace></div>
+<div ng-include="'/fragments/progress-bar.html'" include-replace></div>
+<div ng-include="'/fragments/loading-data-dialog.html'" include-replace></div>
+<div ng-include="'/fragments/defining-series-type-dialog.html'" include-replace></div>
+<div ng-include="'/fragments/data-management-existing-data-dialog.html'" include-replace></div>
+
+</body>
+
+</html>
