@@ -51,7 +51,7 @@
     "tag": "v0.9.25",
     "commit": "a1e4b9fa3c1a5c5a453cf0a427245d75ae298d4d"
   },
-  "_source": "git://github.com/paperjs/paper.js.git",
+  "_source": "https://github.com/paperjs/paper.js.git",
   "_target": "~0.9.25",
   "_originalSource": "paper"
 }

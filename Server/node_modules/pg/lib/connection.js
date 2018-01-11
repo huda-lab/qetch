@@ -159,7 +159,7 @@ Connection.prototype.cancel = function(processID, secretKey) {
     .addInt16(5678)
     .addInt32(processID)
     .addInt32(secretKey)
-    .addCString('').flush();
+    .flush();
 
   var length = bodyBuffer.length + 4;
 
@@ -423,7 +423,7 @@ Connection.prototype.parseR = function(buffer, length) {
       return msg;
     }
   }
-  throw new Error("Unknown authenticatinOk message type" + util.inspect(msg));
+  throw new Error("Unknown authenticationOk message type" + util.inspect(msg));
 };
 
 Connection.prototype.parseS = function(buffer, length) {

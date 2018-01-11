@@ -54,8 +54,8 @@
       mousewheel: true,
       buttondown_class: 'btn btn-default',
       buttonup_class: 'btn btn-default',
-	  buttondown_txt: '-',
-	  buttonup_txt: '+'
+      buttondown_txt: '-',
+      buttonup_txt: '+'
     };
 
     var attributeMap = {
@@ -81,8 +81,8 @@
       mousewheel: 'mouse-wheel',
       buttondown_class: 'button-down-class',
       buttonup_class: 'button-up-class',
-	  buttondown_txt: 'button-down-txt',
-	  buttonup_txt: 'button-up-txt'
+      buttondown_txt: 'button-down-txt',
+      buttonup_txt: 'button-up-txt'
     };
 
     return this.each(function() {
@@ -164,6 +164,14 @@
 
       function _updateSettings(newsettings) {
         settings = $.extend({}, settings, newsettings);
+
+        // Update postfix and prefix texts if those settings were changed.
+        if (newsettings.postfix) {
+          originalinput.parent().find('.bootstrap-touchspin-postfix').text(newsettings.postfix);
+        }
+        if (newsettings.prefix) {
+          originalinput.parent().find('.bootstrap-touchspin-prefix').text(newsettings.prefix);
+        }
       }
 
       function _buildHtml() {

@@ -1,13 +1,12 @@
 {
   "name": "jquery-bridget",
-  "version": "2.0.0",
   "main": "jquery-bridget.js",
   "description": "Bridget makes jQuery widgets",
   "dependencies": {
     "jquery": ">=1.4.2 <4"
   },
   "devDependencies": {
-    "qunit": "~1.10"
+    "qunit": "^2.0.0"
   },
   "homepage": "https://github.com/desandro/jquery-bridget",
   "authors": [
@@ -32,13 +31,14 @@
     "tests",
     "package.json"
   ],
-  "_release": "2.0.0",
+  "version": "2.0.1",
+  "_release": "2.0.1",
   "_resolution": {
     "type": "version",
-    "tag": "v2.0.0",
-    "commit": "2adf100bbe57bd40e7b52d86afef5374fe0e2c0a"
+    "tag": "v2.0.1",
+    "commit": "2816423f882886b7aaa8135f1ad8bd2b0a868769"
   },
-  "_source": "git://github.com/desandro/jquery-bridget.git",
-  "_target": "*",
+  "_source": "https://github.com/desandro/jquery-bridget.git",
+  "_target": "^2.0.1",
   "_originalSource": "jquery-bridget"
 }

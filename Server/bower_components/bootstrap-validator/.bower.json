@@ -36,8 +36,7 @@
     "tag": "v0.9.0",
     "commit": "d9d8f1826fc3cdda74c9443abf922de4ca31227f"
   },
-  "_source": "git://github.com/1000hz/bootstrap-validator.git",
+  "_source": "https://github.com/1000hz/bootstrap-validator.git",
   "_target": "^0.9.0",
-  "_originalSource": "bootstrap-validator",
-  "_direct": true
+  "_originalSource": "bootstrap-validator"
 }

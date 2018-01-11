@@ -29,7 +29,7 @@
     "tag": "v6.1.8",
     "commit": "377b90b833c7b05d1c68e60ffdfb31a43a45a877"
   },
-  "_source": "git://github.com/seiyria/bootstrap-slider.git",
+  "_source": "https://github.com/seiyria/bootstrap-slider.git",
   "_target": ">= 5.2 < 7.0",
   "_originalSource": "seiyria-bootstrap-slider"
 }

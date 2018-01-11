@@ -47,7 +47,7 @@ Run the [test suite](https://modernizr.github.io/Modernizr/test/)
 
 ### To generate everything in 'config-all.json':
 
-```js
+```shell
 npm install
 ./bin/modernizr -c lib/config-all.json
 //outputs to ./modernizr.js
@@ -55,7 +55,7 @@ npm install
 
 ### To run tests (in phantom):
 
-```js
+```shell
 grunt test
 ```
 
@@ -74,7 +74,7 @@ serve the root dir, `<url>/test/modular.html`
 ### To see the build tool:
 
 * checkout the modernizr.com code
-* install all your gems and bundles and jekyll and shit
+* install all your gems and bundles and jekyll
 * `jekyll`
 * `serve ./_sites`
 * visit <url>/download

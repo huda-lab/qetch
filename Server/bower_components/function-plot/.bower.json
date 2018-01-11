@@ -37,7 +37,7 @@
     "tag": "v1.12.4",
     "commit": "e7b25e52fddc5df8ffcb1397111687684d791ac0"
   },
-  "_source": "git://github.com/maurizzzio/function-plot.git",
+  "_source": "https://github.com/maurizzzio/function-plot.git",
   "_target": "~1.12.2",
   "_originalSource": "function-plot"
 }

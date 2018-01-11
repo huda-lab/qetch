@@ -1,5 +1,5 @@
 var defaults = module.exports = {
-  // database host defaults to localhost
+  // database host. defaults to localhost
   host: 'localhost',
 
   //database user's name
@@ -30,7 +30,7 @@ var defaults = module.exports = {
   //from the pool and destroyed
   poolIdleTimeout: 30000,
 
-  //frequeny to check for idle clients within the client pool
+  //frequency to check for idle clients within the client pool
   reapIntervalMillis: 1000,
 
   //pool log function / boolean
@@ -40,8 +40,10 @@ var defaults = module.exports = {
 
   ssl: false,
 
-  application_name : undefined,
-  fallback_application_name: undefined
+  application_name: undefined,
+  fallback_application_name: undefined,
+
+  parseInputDatesAsUTC: false
 };
 
 //parse int8 so you can get your count values as actual numbers
