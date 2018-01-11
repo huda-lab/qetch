@@ -43,3 +43,8 @@ Now the interface can be accessed from a browser at:
 
     http://localhost:2048/
 
+## Configure Database
+
+The database connection settings can be found in the file: `Server/config.json`
+
+In order to load the data to the database the scripts in the folder `Datasets` should be used, running the script `Datasets/utils/load_all.sh`
