@@ -9,12 +9,13 @@ Qetch enables the easy construction of complex and expressive queries with two k
 
 # Useful links
 
-- The main paper can be found in [*] [^the link will be available later few weeks after the conference]
+- The main paper can be found in [*]
 
-- Demo video
+- Demo video [*]
 
-- Extensive demo video
+- Extensive demo video [*]
 
+*links will be available later few weeks before the conference*
 
 # Repository content
 
@@ -47,4 +48,4 @@ Now the interface can be accessed from a browser at:
 
 The database connection settings can be found in the file: `Server/config.json`
 
-In order to load the data to the database the scripts in the folder `Datasets` should be used, running the script `Datasets/utils/load_all.sh`
+In order to load the data to the database the scripts in the folder `Datasets` should be used. The script `Datasets/utils/load_all.sh` loads all the available datasets.
