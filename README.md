@@ -13,7 +13,7 @@ Qetch enables the easy construction of complex and expressive queries with two k
 
 - Demo video [*]
 
-- Extensive demo video [*]
+- [Extensive demo video](https://youtu.be/Owb-SuW2cIE)
 
 *links will be available later few weeks before the conference*
 
