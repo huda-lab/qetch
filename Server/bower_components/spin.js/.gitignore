@@ -1,7 +1,0 @@
-/.grunt
-/node_modules
-/package-lock.json
-/site/bundle.js
-/site/spin.js
-/spin.js
-/spin.d.ts

@@ -1,1 +1,0 @@
-python3 create-fig-and-csv-from-mturk-results.py Batch_2634095_batch_results.csv cq2 cq3 cwh fp has hasb ihas mmb rb sd sp sr

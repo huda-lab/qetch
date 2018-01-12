@@ -1,9 +1,0 @@
-{
-  "name": "utils",
-  "version": "1.0.0",
-  "description": "util scripts to load data into the database",
-  "dependencies": {
-    "influent": "^0.4.2"
-  },
-  "devDependencies": {}
-}
