@@ -9,9 +9,9 @@ Qetch enables the easy construction of complex and expressive queries with two k
 
 # Useful links
 
-- [Pre-print version of the paper](https://github.com/dtl-nyuad/qetch/blob/resources/CHI_18_QETCH_preprint.pdf)
+- [Pre-print version of the paper](https://github.com/dtl-nyuad/qetch/blob/resources/CHI_18_QETCH.pdf)
 
-- Demo video [not available yet]
+- [Demo video](https://youtu.be/4YQTuUuIFbI)
 
 - [Extensive demo video](https://youtu.be/Owb-SuW2cIE)
 
