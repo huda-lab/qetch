@@ -2,6 +2,8 @@
 
 Qetch is a tool that allows users to freely sketch patterns on a scale-less canvas to query time series data without specifying query length or amplitude. 
 
+![screenshot](https://github.com/dtl-nyuad/qetch/blob/resources/screenshot.png)
+
 We study how humans sketch time series patterns --- humans preserve visually salient perceptual features but often non-uniformly scale and locally distort a pattern --- and we develop a novel matching algorithm that accounts for human sketching errors. 
 
 Qetch enables the easy construction of complex and expressive queries with two key features: *regular expressions over sketches* and *relative positioning of sketches* to query multiple time-aligned series. 
