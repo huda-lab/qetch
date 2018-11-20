@@ -8,10 +8,15 @@ We study how humans sketch time series patterns --- humans preserve visually sal
 
 Qetch enables the easy construction of complex and expressive queries with two key features: *regular expressions over sketches* and *relative positioning of sketches* to query multiple time-aligned series. 
 
+# Publications
 
-# Useful links
+- [CHI'18 - Expressive Time Series Querying with Hand-Drawn Scale-Free Sketches](https://dl.acm.org/citation.cfm?id=3173962)
 
-- [Pre-print version of the paper](https://github.com/dtl-nyuad/qetch/blob/resources/CHI_18_QETCH.pdf)
+- [SIGMOD'18 - Qetch: Time Series Querying with Expressive Sketches](https://dl.acm.org/citation.cfm?id=3193547)
+
+# Videos
+
+- [ACM SIGCHI Teaser Video](https://www.youtube.com/watch?v=g4uI_TGl3UI)
 
 - [Demo video](https://youtu.be/4YQTuUuIFbI)
 
