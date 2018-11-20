@@ -14,6 +14,10 @@ Qetch enables the easy construction of complex and expressive queries with two k
 
 - [SIGMOD'18 - Qetch: Time Series Querying with Expressive Sketches](https://dl.acm.org/citation.cfm?id=3193547)
 
+# Awards
+
+We are pleased to announce that Qetch won the Best Paper Award during the SIGCHI'18 conference!
+
 # Videos
 
 - [ACM SIGCHI Teaser Video](https://www.youtube.com/watch?v=g4uI_TGl3UI)
