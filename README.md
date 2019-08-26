@@ -37,7 +37,7 @@ This repository contains:
 
 - The collected queries from our crowd study are in the folder `Crowd-Study Data`
 
-## Run Qetch
+## How to run Qetch
 
 The project's backend has been developed using NodeJS and a front-end which includes many technologies, such as: AngularJS, D3, Bootstrap, Paper.js, Math.js, etc. It requires a PostreSQL database in order to store and load time series.
 
