@@ -8,17 +8,17 @@ We study how humans sketch time series patterns --- humans preserve visually sal
 
 Qetch enables the easy construction of complex and expressive queries with two key features: *regular expressions over sketches* and *relative positioning of sketches* to query multiple time-aligned series. 
 
-# Publications
+## Publications
 
 - [CHI'18 - Expressive Time Series Querying with Hand-Drawn Scale-Free Sketches](https://dl.acm.org/citation.cfm?id=3173962)
 
 - [SIGMOD'18 - Qetch: Time Series Querying with Expressive Sketches](https://dl.acm.org/citation.cfm?id=3193547)
 
-# Awards
+## Awards
 
 We are pleased to announce that Qetch won the Best Paper Award during the SIGCHI'18 conference!
 
-# Videos
+## Videos
 
 - [ACM SIGCHI Teaser Video](https://www.youtube.com/watch?v=g4uI_TGl3UI)
 
@@ -27,7 +27,7 @@ We are pleased to announce that Qetch won the Best Paper Award during the SIGCHI
 - [Extensive demo video](https://youtu.be/Owb-SuW2cIE)
 
 
-# Repository content
+## Repository content
 
 This repository contains:
 
@@ -37,7 +37,7 @@ This repository contains:
 
 - The collected queries from our crowd study are in the folder `Crowd-Study Data`
 
-# Run Qetch
+## Run Qetch
 
 The project's backend has been developed using NodeJS and a front-end which includes many technologies, such as: AngularJS, D3, Bootstrap, Paper.js, Math.js, etc. It requires a PostreSQL database in order to store and load time series.
 
@@ -54,7 +54,7 @@ Now the interface can be accessed from a browser at:
 
     http://localhost:2048/
 
-## Configure Database
+### Configure Database
 
 The database connection settings can be found in the file: `Server/config.json`
 
