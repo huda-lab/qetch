@@ -10,9 +10,13 @@ Qetch enables the easy construction of complex and expressive queries with two k
 
 ## Publications
 
-- [CHI'18 - Expressive Time Series Querying with Hand-Drawn Scale-Free Sketches](https://dl.acm.org/citation.cfm?id=3173962)
+**[Expressive Time Series Querying with Hand-Drawn Scale-Free Sketches](https://dl.acm.org/citation.cfm?id=3173962)**
+<br/>
+<span style="font-size:80%">Miro Mannino, Azza Abouzied - CHI'18</span>
 
-- [SIGMOD'18 - Qetch: Time Series Querying with Expressive Sketches](https://dl.acm.org/citation.cfm?id=3193547)
+**[Qetch: Time Series Querying with Expressive Sketches](https://dl.acm.org/citation.cfm?id=3193547)**
+<br/>
+<span style="font-size:80%">Miro Mannino, Azza Abouzied - SIGMOD'18</span>
 
 ## Awards
 
