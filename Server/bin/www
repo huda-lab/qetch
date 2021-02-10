@@ -7,7 +7,7 @@
 var qetch = require('../qetch');
 var debug = require('debug')('qetch:server');
 var http = require('http');
-var config = require('../config');
+var config = require('../../config.json');
 
 /**
  * Get port from environment and store in Express.

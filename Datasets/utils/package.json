@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "util scripts to load data into the database",
   "dependencies": {
-    "influent": "^0.4.2"
+    "async": "^3.2.0",
+    "influent": "^0.4.2",
+    "pg": "^8.5.1"
   },
   "devDependencies": {}
 }
