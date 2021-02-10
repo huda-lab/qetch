@@ -1,0 +1,51 @@
+measurementkey,measurementseries,description
+TEST,t1,Test1
+TEST,t2,Test2
+MITBIH,s1,Series 1
+MITBIH,s2,Series 2
+MITBIH,s3,Series 3
+MITBIH,s4,Series 4
+QTDB,sel102,sel102
+ISP,s1,s1
+ISP,s2,s2
+TEST,t3,Test3
+CMP1,insuranceeq,Insurance companies equity
+PRICES,ALK,ALK
+PRICES,AMZN,AMZN
+PRICES,MSFT,MSFT
+PRICES,APC,APC
+CMP1,unemployed,Unemployed
+MITBIH,STC302,ST Change 302
+MITBIH,STC301,ST Change 301
+regexpexp,curves,Curves
+regexpexp,curveswithanomaly,Curves with anomaly
+regexpexp,curveswithanomaly2,Curves with anomaly 2
+regexpexp,peaks1,Peaks1
+regexpexp,peaks2,Peaks2
+regexpexp,v1,V 1
+multiplequeries,multipleq1,Dataset a
+multiplequeries,multiple2,Dataset b
+multiplequeries,multiple3,Dataset c
+regexpexp,v2,V 2
+multiplequeries2,multipleq1,Dataset a
+multiplequeries2,multipleq2,Dataset b
+multiplequeries2,multipleq3,Dataset c
+multiplequeriesplay,multiplequeriesplaya,Dataset a
+multiplequeriesplay,multiplequeriesplayb,Dataset b
+regexpexp,regexp1,Regexp1 a
+regexpexp,regexp1b,Regexp2 a
+regexpexp,regexp2b,Regexp2 b
+regexpexp,repeatedpattern2,Regexp1 b
+multiplequeries3,multiplequeries3a,Dataset a
+multiplequeries3,multiplequery3b,Dataset b
+multiplequeries3,multiplequery3c,Dataset c
+multiplequeries3,multiplequery3d,Dataset d
+multiplequeries4,multiplequeries4a,Dataset a
+multiplequeries4,multiplequeries4b,Dataset b
+multiplequeries4,multiplequeries4c,Dataset c
+multiplequeries4,multiplequeries4d,Dataset d
+USRTST,forexchangebrius,Foreign exchange british US
+USRTST,saugeenrivtemp,Saugeen river temperature
+USRTST,precipitationseastport,Precipitations Eastport
+USRTST,importprodminingcoal,Import for mining of coal
+USRTST,meandailyflowcumecsvatnsdals,Mean daily flow Vatnsdalsa River

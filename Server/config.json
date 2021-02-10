@@ -1,8 +1,0 @@
-{
-  "server": {
-    "port": 2048
-  },
-  "database": {
-    "connectionString": "postgres://miro:@localhost/qetch"
-  }
-}

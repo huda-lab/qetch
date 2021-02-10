@@ -60,6 +60,25 @@ Now the interface can be accessed from a browser at:
 
 ### Configure Database
 
-The database connection settings can be found in the file: `Server/config.json`
+(optional) Create a database and a user in your PostgreSQL database for Qetch. Open PostgreSQL interactive terminal with:
 
-In order to load the data to the database the scripts in the folder `Datasets` should be used. The script `Datasets/utils/load_all.sh` loads all the available datasets.
+    psql
+
+Now create a database and a user with:
+
+    CREATE DATABASE qetchdb;
+    CREATE USER qetchdb_user WITH ENCRYPTED PASSWORD 'qetchdb_user_password';
+    GRANT ALL PRIVILEGES ON DATABASE qetchdb TO qetchdb_user;
+
+Now you can exit the interactive terminal and double-check that you can access this database 
+using the specified username and password with:
+
+    psql -U qetchdb_user -d qetchdb
+
+You can report these settings in the file: `config.json` in order to allow Qetch to access this database.
+
+In order to load the data to the database the scripts in the folder `Datasets` should be used. 
+The script `load_all.sh` loads all the available datasets:
+
+    cd Datasets/utils
+    ./load_all.sh

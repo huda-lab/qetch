@@ -1,10 +1,14 @@
 var express = require('express');
 var readline = require('readline');
 var router = express.Router();
-var config = require('../config');
+var config = require('../../config.json');
 var influent = require('influent');
 var async = require('async');
 var pg = require('pg');
+
+var pool = new pg.Pool({
+  connectionString: config.database.connectionString,
+});
 
 router.get('/:seriesKey/:seriesNumber', function(req, res, next) {
 
@@ -15,7 +19,7 @@ router.get('/:seriesKey/:seriesNumber', function(req, res, next) {
       return;
     }
 
-    pg.connect(config.database.connectionString, function (err, client, done) {
+    pool.connect(function (err, client, done) {
       if (err) {
         res.status(500).send(err);
         return;
@@ -52,7 +56,6 @@ router.get('/:seriesKey/:seriesNumber', function(req, res, next) {
         res.send(dataset);
 
         done();
-        pg.end();
       });
 
     });
@@ -62,14 +65,13 @@ router.get('/:seriesKey/:seriesNumber', function(req, res, next) {
 });
 
 router.delete('/series/:seriesKey/:seriesNumber', function(req, res, next) { 
-  pg.connect(config.database.connectionString, function(err, client, done) {
+  pool.connect(function(err, client, done) {
     client.query('delete from measurement where sname = $1 and snum = $2', 
        [req.params.seriesKey, req.params.seriesNumber], 
         function(err, result) {
       if (err) {
         res.status(500).send(err);
         done();
-        pg.end();
         return;
       }
       client.query('delete from measurementseriesdescription where measurementkey = $1 and measurementseries = $2', 
@@ -78,21 +80,19 @@ router.delete('/series/:seriesKey/:seriesNumber', function(req, res, next) {
         if (err) res.status(500).send(err);
         else res.status(200).send('ok');
         done();
-        pg.end();
       });
     });
   });
 });
 
 router.delete('/seriestype/:seriesKey', function(req, res, next) { 
-  pg.connect(config.database.connectionString, function(err, client, done) {
+  pool.connect(function(err, client, done) {
     client.query('delete from measurementdescription where key = $1', 
        [req.params.seriesKey], 
         function(err, result) {
       if (err) res.status(500).send(err);
       else res.status(200).send('ok');
       done();
-      pg.end();
     });
   });
 });
@@ -100,7 +100,7 @@ router.delete('/seriestype/:seriesKey', function(req, res, next) {
 router.post('/series', function(req, res, next) { res.send('ok'); });
 router.post('/series/:seriesKey/:seriesNumber', function(req, res, next) {
   var data = req.body.datasetSeriesData.split('\n');
-  pg.connect(config.database.connectionString, function(err, client, done) {
+  pool.connect(function(err, client, done) {
     async.each(data, function (dataEntry, callback) {
       var dataEntryValues = dataEntry.split(',');
       if (dataEntryValues.length != 2) {
@@ -123,7 +123,6 @@ router.post('/series/:seriesKey/:seriesNumber', function(req, res, next) {
           function(err, result) {
         if (err) res.status(500).send(err.detail); else res.send('ok');
         done();
-        pg.end();
       });
     });
   });
@@ -131,7 +130,7 @@ router.post('/series/:seriesKey/:seriesNumber', function(req, res, next) {
 
 router.post('/seriestype', function(req, res, next) { res.send('ok'); });
 router.post('/seriestype/:seriesKey', function(req, res, next) {
-  pg.connect(config.database.connectionString, function(err, client, done) {
+  pool.connect(function(err, client, done) {
     client.query('INSERT INTO measurementdescription (key, description, relativetime, xaxisdesc, yaxisdesc, xaxistype, yaxistype, xaxisformat) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', 
         [req.params.seriesKey, 
          req.body.datasetTypeDesc,
@@ -145,13 +144,12 @@ router.post('/seriestype/:seriesKey', function(req, res, next) {
         function(err, result) {
       if (err) res.status(500).send(err.detail); else res.send('ok');
       done();
-      pg.end();
     });
   });
 });
 
 router.get('/definition', function(req, res, next) {
-  pg.connect(config.database.connectionString, function (err, client, done) {
+  pool.connect(function (err, client, done) {
     if (err) {
       res.status(500).send(err);
       return;
@@ -200,7 +198,6 @@ router.get('/definition', function(req, res, next) {
 
         res.send({dataDefinition: definition});
         done();
-        pg.end();
       });
     });
 
@@ -208,7 +205,7 @@ router.get('/definition', function(req, res, next) {
 });
 
 function getDataDefinition(key, callback) {
-  pg.connect(config.database.connectionString, function (err, client, done) {
+  pool.connect(function (err, client, done) {
     if (err) { 
       callback(null);
       return;
@@ -249,7 +246,7 @@ function getDataDefinition(key, callback) {
             });
           }
 
-          pg.end(); 
+          done();
           callback(definition);
       });
     });

@@ -1,0 +1,14 @@
+key,description,relativetime,xaxisdesc,yaxisdesc,xaxistype,yaxistype,xaxisformat
+TEST,Tests,t,X,Y,number,number,\N
+MITBIH,MIT-BIH,t,Time,Instantaneous Heart Rate,number,number,\N
+PRICES,Stock Prices,f,Time,Price,date,number,%x
+QTDB,QT Database,t,Sample,V5,number,number,\N
+ISP,ISP traffic,f,Time,Bits,date,number,%x
+CMP1,Recession1,f,Time,num,date,number,\N
+regexpexp,Regexp Experiments,f,X,Y,number,number,
+multiplequeries,Multiple Queries,f,X,Y,number,number,
+multiplequeries2,Multiple Queries 2,f,X,Y,number,number,
+multiplequeriesplay,Multiple Queries Play,f,X,Y,number,date,
+multiplequeries3,Multiple Queries 3,f,X,Y,number,date,
+multiplequeries4,Multiple Queries 4,f,X,Y,number,date,
+USRTST,USR Studies,t,Time,Y,date,number,%x

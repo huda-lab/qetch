@@ -1,0 +1,8 @@
+{
+  "server": {
+    "port": 2048
+  },
+  "database": {
+    "connectionString": "postgres://qetchdb_user:qetchdb_user_password@localhost/qetchdb"
+  }
+}

@@ -1,10 +1,13 @@
 var readline = require('readline');
 var pg = require('pg');
+var config = require('../../config.json');
 
-var conString = "postgres://miro:@localhost/qetch";
-
-var client = new pg.Client(conString);
-client.connect(function(err) {
+console.log('TEST CONNECTION');
+var pool = new pg.Pool({
+  connectionString: config.database.connectionString,
+});
+pool.connect(function(err, client, done) {
+  console.log('client connect callback');
   if(err) {
     return console.error('could not connect to postgres', err);
   }
@@ -12,8 +15,10 @@ client.connect(function(err) {
     if(err) {
       return console.error('error running query', err);
     }
+    console.log('CONNECTION WORKING.')
     console.log(result.rows[0].theTime);
-    client.end();
+    done();
   });
 });
 
+pool.end();
