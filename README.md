@@ -26,9 +26,9 @@ We are pleased to announce that Qetch won the Best Paper Award during the SIGCHI
 
 - [ACM SIGCHI Teaser Video](https://www.youtube.com/watch?v=g4uI_TGl3UI)
 
-- [Demo video](https://youtu.be/4YQTuUuIFbI)
+- [Demo video](https://youtu.be/T11OS4qO1c4)
 
-- [Extensive demo video](https://youtu.be/Owb-SuW2cIE)
+- [Short Demo video](https://youtu.be/LP-JL40jUBs)
 
 
 ## Repository content
