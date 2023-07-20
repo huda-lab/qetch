@@ -71,7 +71,7 @@ USRTST	USR Studies	t	Time	Y	date	number	%x
 CREATE TABLE measurementseriesdescription (
   measurementkey character varying NOT NULL,
   measurementseries character varying NOT NULL,
-  description character varying
+  description character varying,
 	constraint pk1 primary key (measurementKey, measurementSeries)
 );
 
